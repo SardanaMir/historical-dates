@@ -1,24 +1,50 @@
-import React from "react";
+import { createContext, useRef, useEffect, useState } from "react";
 import styled from "styled-components";
+import HistoryFacts from "../../data/historyFacts.json";
+import { Carousel, YearsPicker } from "../../components";
+
+const ActiveIndexContext = createContext(0);
 
 const Main = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeHistoryFact, setActiveHistoryFact] = useState(
+    HistoryFacts[activeIndex]
+  );
+
+  const prevActiveIndex = useRef(activeIndex);
+
+  useEffect(() => {
+    prevActiveIndex.current = activeIndex;
+    return setActiveHistoryFact(HistoryFacts[activeIndex]);
+  }, [activeIndex]);
+
   return (
-    <Background>
-      <Wrapper>
-        <VerticalLine />
-        <HorizontalLine />
-        <GradientElement />
-        <Title>Исторические даты</Title>
-        <DateWrapper>
-          <DateBlue>2015</DateBlue>
-          <DatePink>2022</DatePink>
-        </DateWrapper>
-      </Wrapper>
-    </Background>
+    <ActiveIndexContext.Provider value={activeIndex}>
+      <Background>
+        <Wrapper>
+          <VerticalLine />
+          <HorizontalLine />
+          <GradientElement />
+          <DateWrapper>
+            <DateBlue>{activeHistoryFact.date1}</DateBlue>
+            <DatePink>{activeHistoryFact.date2}</DatePink>
+          </DateWrapper>
+          <Container>
+            <Title>Исторические даты</Title>
+            <div>
+              <YearsPicker
+                historyFacts={HistoryFacts}
+                setActiveIndex={setActiveIndex}
+                activeIndex={activeIndex}
+              />
+              <Carousel activeIndex={activeIndex} />
+            </div>
+          </Container>
+        </Wrapper>
+      </Background>
+    </ActiveIndexContext.Provider>
   );
 };
-
-export default Main;
 
 const Background = styled.section`
   height: 100vh;
@@ -43,7 +69,6 @@ const Title = styled.div`
   font-size: 3rem;
   font-weight: 700;
   color: rgba(66, 86, 122, 1);
-  margin-left: 50px;
 `;
 
 const DateBlue = styled.div`
@@ -60,11 +85,11 @@ const DatePink = styled.div`
 
 const DateWrapper = styled.div`
   display: flex;
-  gap: 150px;
+  gap: 40px;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -83,7 +108,7 @@ const HorizontalLine = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  top: 40%;
+  top: 45%;
   transform: translateY(-50%);
   border-top: 1px solid rgba(66, 86, 122, 0.3);
   width: 100%;
@@ -100,3 +125,15 @@ const GradientElement = styled.div`
   );
   left: -3px;
 `;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 1180px;
+  // display: block;
+  margin: 0 auto;
+`;
+
+export default Main;
