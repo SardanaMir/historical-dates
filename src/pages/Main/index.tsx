@@ -1,7 +1,7 @@
 import { createContext, useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import HistoryFacts from "../../data/historyFacts.json";
-import { Carousel, YearsPicker } from "../../components";
+import { Carousel, YearsPicker, YearsCounter } from "../../components";
 
 const ActiveIndexContext = createContext(0);
 
@@ -26,8 +26,16 @@ const Main = () => {
           <HorizontalLine />
           <GradientElement />
           <DateWrapper>
-            <DateBlue>{activeHistoryFact.date1}</DateBlue>
-            <DatePink>{activeHistoryFact.date2}</DatePink>
+            <YearsCounter
+              historyFacts={HistoryFacts}
+              activeIndex={activeIndex}
+              dateKey="date1"
+            />
+            <YearsCounter
+              historyFacts={HistoryFacts}
+              activeIndex={activeIndex}
+              dateKey="date2"
+            />
           </DateWrapper>
           <Container>
             <Title>Исторические даты</Title>
@@ -59,33 +67,21 @@ const Wrapper = styled.div`
   width: 80rem;
   height: 100%;
   padding: 2rem 0;
-  border-left: 1px solid rgba(66, 86, 122, 0.3);
-  border-right: 1px solid rgba(66, 86, 122, 0.3);
+  border-left: 0.06rem solid rgba(66, 86, 122, 0.3);
+  border-right: 0.06rem solid rgba(66, 86, 122, 0.3);
 `;
 
 const Title = styled.div`
   display: inline-block;
-  width: 400px;
+  width: 25rem;
   font-size: 3rem;
   font-weight: 700;
   color: rgba(66, 86, 122, 1);
 `;
 
-const DateBlue = styled.div`
-  font-size: 10rem;
-  font-weight: 700;
-  color: rgba(56, 119, 238, 1);
-`;
-
-const DatePink = styled.div`
-  font-size: 10rem;
-  font-weight: 700;
-  color: rgba(245, 99, 147, 1);
-`;
-
 const DateWrapper = styled.div`
   display: flex;
-  gap: 40px;
+  gap: 2.5rem;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -100,7 +96,7 @@ const VerticalLine = styled.div`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-left: 1px solid rgba(66, 86, 122, 0.3);
+  border-left: 0.06rem solid rgba(66, 86, 122, 0.3);
   height: 100%;
 `;
 
@@ -110,14 +106,14 @@ const HorizontalLine = styled.div`
   right: 0;
   top: 45%;
   transform: translateY(-50%);
-  border-top: 1px solid rgba(66, 86, 122, 0.3);
+  border-top: 0.06rem solid rgba(66, 86, 122, 0.3);
   width: 100%;
 `;
 
 const GradientElement = styled.div`
   position: absolute;
-  width: 5px;
-  height: 120px;
+  width: 0.3rem;
+  height: 7.5rem;
   background: linear-gradient(
     to bottom,
     rgba(56, 119, 238, 1),
@@ -131,8 +127,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  width: 1180px;
-  // display: block;
+  width: 73rem;
   margin: 0 auto;
 `;
 
