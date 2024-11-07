@@ -50,12 +50,24 @@ const DateBlue = styled.div`
   font-size: 10rem;
   font-weight: 700;
   color: rgba(56, 119, 238, 1);
+  @media (max-width: 1024px) {
+    font-size: 7rem;
+  }
+  @media (max-width: 425px) {
+    font-size: 3.5rem;
+  }
 `;
 
 const DatePink = styled.div`
   font-size: 10rem;
   font-weight: 700;
   color: rgba(245, 99, 147, 1);
+  @media (max-width: 1024px) {
+    font-size: 7rem;
+  }
+  @media (max-width: 425px) {
+    font-size: 3.5rem;
+  }
 `;
 
 export default YearsCounter;

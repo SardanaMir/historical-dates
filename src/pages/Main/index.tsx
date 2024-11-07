@@ -25,20 +25,20 @@ const Main = () => {
           <VerticalLine />
           <HorizontalLine />
           <GradientElement />
-          <DateWrapper>
-            <YearsCounter
-              historyFacts={HistoryFacts}
-              activeIndex={activeIndex}
-              dateKey="date1"
-            />
-            <YearsCounter
-              historyFacts={HistoryFacts}
-              activeIndex={activeIndex}
-              dateKey="date2"
-            />
-          </DateWrapper>
           <Container>
             <Title>Исторические даты</Title>
+            <DateWrapper>
+              <YearsCounter
+                historyFacts={HistoryFacts}
+                activeIndex={activeIndex}
+                dateKey="date1"
+              />
+              <YearsCounter
+                historyFacts={HistoryFacts}
+                activeIndex={activeIndex}
+                dateKey="date2"
+              />
+            </DateWrapper>
             <div>
               <YearsPicker
                 historyFacts={HistoryFacts}
@@ -69,6 +69,16 @@ const Wrapper = styled.div`
   padding: 2rem 0;
   border-left: 0.06rem solid rgba(66, 86, 122, 0.3);
   border-right: 0.06rem solid rgba(66, 86, 122, 0.3);
+  @media (max-width: 1024px) {
+    width: 60rem;
+  }
+  @media (max-width: 768px) {
+    width: 40rem;
+    border: none;
+  }
+  @media (max-width: 425px) {
+    width: 20rem;
+  }
 `;
 
 const Title = styled.div`
@@ -77,6 +87,14 @@ const Title = styled.div`
   font-size: 3rem;
   font-weight: 700;
   color: rgba(66, 86, 122, 1);
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 425px) {
+    font-size: 1.5rem;
+    width: auto;
+  }
 `;
 
 const DateWrapper = styled.div`
@@ -88,6 +106,12 @@ const DateWrapper = styled.div`
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media (max-width: 768px) {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
 `;
 
 const VerticalLine = styled.div`
@@ -98,6 +122,9 @@ const VerticalLine = styled.div`
   transform: translateX(-50%);
   border-left: 0.06rem solid rgba(66, 86, 122, 0.3);
   height: 100%;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const HorizontalLine = styled.div`
@@ -108,6 +135,9 @@ const HorizontalLine = styled.div`
   transform: translateY(-50%);
   border-top: 0.06rem solid rgba(66, 86, 122, 0.3);
   width: 100%;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const GradientElement = styled.div`
@@ -119,7 +149,10 @@ const GradientElement = styled.div`
     rgba(56, 119, 238, 1),
     rgba(239, 93, 168, 1)
   );
-  left: -3px;
+  left: -0.19rem;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Container = styled.div`
@@ -127,8 +160,19 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  width: 73rem;
+  max-width: 73rem;
   margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    width: 50rem;
+  }
+  @media (max-width: 768px) {
+    width: 40rem;
+    justify-content: space-around;
+  }
+  @media (max-width: 425px) {
+    width: 20rem;
+  }
 `;
 
 export default Main;

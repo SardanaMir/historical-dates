@@ -184,28 +184,38 @@ const ActiveDot = styled.div`
 `;
 
 const Circle = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 25rem;
+  height: 25rem;
   border-radius: 50%;
-  border: 1px solid rgba(66, 86, 122, 0.3);
+  border: 0.06rem solid rgba(66, 86, 122, 0.3);
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const CircleWrapper = styled.div`
   display: flex;
   gap: 1.25rem;
   margin-bottom: 1.88rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 425px) {
+    gap: 0.25rem;
+  }
 `;
 
 const Button = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  border: 1px solid rgba(66, 86, 122, 0.5);
+  border: 0.06rem solid rgba(66, 86, 122, 0.5);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -213,51 +223,79 @@ const Button = styled.button`
   position: relative;
 
   &:hover {
-    border: 1px solid rgba(66, 86, 122, 1);
+    border: 0.06rem solid rgba(66, 86, 122, 1);
     div {
       background: rgba(66, 86, 122, 1);
     }
+  }
+  @media (max-width: 425px) {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `;
 
 const ArrowRight1 = styled.div`
   position: absolute;
-  width: 10px;
-  height: 2px;
+  width: 0.63rem;
+  height: 0.13rem;
   transform: rotate(45deg);
   background: rgb(161, 171, 189);
-  left: 14px;
-  top: 15px;
+  left: 0.88rem;
+  top: 0.94rem;
+  @media (max-width: 425px) {
+    width: 0.38rem;
+    height: 0.06rem;
+    left: 0.44rem;
+    top: 0.44rem;
+  }
 `;
 
 const ArrowRight2 = styled.div`
   position: absolute;
-  width: 10px;
-  height: 2px;
+  width: 0.63rem;
+  height: 0.13rem;
   transform: rotate(-45deg);
   background: rgb(161, 171, 189);
-  right: 14px;
-  bottom: 15px;
+  right: 0.88rem;
+  bottom: 0.94rem;
+  @media (max-width: 425px) {
+    width: 0.38rem;
+    height: 0.06rem;
+    right: 0.3rem;
+    bottom: 0.4rem;
+  }
 `;
 
 const ArrowLeft1 = styled.div`
   position: absolute;
-  width: 10px;
-  height: 2px;
+  width: 0.63rem;
+  height: 0.13rem;
   transform: rotate(-45deg);
   background: rgb(161, 171, 189);
-  left: 14px;
-  top: 15px;
+  left: 0.88rem;
+  top: 0.94rem;
+  @media (max-width: 425px) {
+    width: 0.38rem;
+    height: 0.06rem;
+    left: 0.38rem;
+    top: 0.45rem;
+  }
 `;
 
 const ArrowLeft2 = styled.div`
   position: absolute;
-  width: 10px;
-  height: 2px;
+  width: 0.63rem;
+  height: 0.13rem;
   transform: rotate(45deg);
   background: rgb(161, 171, 189);
-  right: 14px;
-  bottom: 15px;
+  right: 0.88rem;
+  bottom: 0.94rem;
+  @media (max-width: 425px) {
+    width: 0.38rem;
+    height: 0.06rem;
+    right: 0.35rem;
+    bottom: 0.4rem;
+  }
 `;
 
 export default YearsPicker;
